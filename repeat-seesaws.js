@@ -17,7 +17,7 @@
 
   const style = document.createElement("style");
   style.textContent = `
-    #${CONTAINER_ID} { display: flex; flex-direction: column; align-items: center; gap: 24px; padding: 24px 0; }
+    #${CONTAINER_ID} { display: flex; flex-direction: column; align-items: start; gap: 24px; padding: 24px 0; }
     #${CONTAINER_ID} img {
       max-width: 90%;
       height: auto;
