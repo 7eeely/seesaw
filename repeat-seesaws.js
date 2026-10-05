@@ -1,4 +1,74 @@
 // scroll-images.js
+// Repeats ONE image forever: a new copy is added each time the user scrolls near the bottom.
+
+(() => {
+  // ---------- CONFIG ----------
+  const IMAGE_PATH = "images/seesaw.png";  // <-- change to your image's real path
+  const TRIGGER_DISTANCE = 300;            // px from the bottom that triggers the next copy
+  const CONTAINER_ID = "image-container";  // optional: an element with this id in your HTML
+  // ----------------------------
+
+  let container = document.getElementById(CONTAINER_ID);
+  if (!container) {
+    container = document.createElement("div");
+    container.id = CONTAINER_ID;
+    document.body.appendChild(container);
+  }
+
+  const style = document.createElement("style");
+  style.textContent = `
+    #${CONTAINER_ID} { display: flex; flex-direction: column; align-items: center; gap: 24px; padding: 24px 0; }
+    #${CONTAINER_ID} img {
+      max-width: 90%;
+      height: auto;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    #${CONTAINER_ID} img.visible { opacity: 1; transform: none; }
+  `;
+  document.head.appendChild(style);
+
+  let broken = false;
+
+  function nearBottom() {
+    return (
+      window.innerHeight + window.scrollY >=
+      document.documentElement.scrollHeight - TRIGGER_DISTANCE
+    );
+  }
+
+  function addImage() {
+    const img = new Image();
+    img.alt = "";
+    img.src = IMAGE_PATH;
+
+    img.onload = () => {
+      container.appendChild(img);
+      requestAnimationFrame(() => img.classList.add("visible"));
+      checkScroll(); // keep adding if the page is still short
+    };
+
+    img.onerror = () => {
+      console.warn("Could not load image:", img.src);
+      broken = true; // stop so it doesn't retry forever
+    };
+  }
+
+  let pending = false;
+  function checkScroll() {
+    if (pending || broken) return;
+    pending = true;
+    requestAnimationFrame(() => {
+      pending = false;
+      if (nearBottom()) addImage();
+    });
+  }
+
+  window.addEventListener("scroll", checkScroll, { passive: true });
+  window.addEventListener("resize", checkScroll);
+  checkScroll();
+})();// scroll-images.js
 // Adds one image from the "images" folder each time the user scrolls near the bottom of the page.
 
 (() => {
