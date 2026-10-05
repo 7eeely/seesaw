@@ -19,7 +19,7 @@
   style.textContent = `
     #${CONTAINER_ID} { display: flex; flex-direction: column; align-items: flex-start; gap: 24px; padding: 24px 0; }
     #${CONTAINER_ID} img {
-      width: 200px;
+      width: 300px;
       max-width: 90%;
       height: auto;
     }
