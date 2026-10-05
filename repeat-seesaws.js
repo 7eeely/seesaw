@@ -17,11 +17,16 @@
 
   const style = document.createElement("style");
   style.textContent = `
-    #${CONTAINER_ID} { display: flex; flex-direction: column; align-items: flex-start; gap: 24px; padding: 24px 0; }
+    #${CONTAINER_ID} {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, 200px); /* column width = image width */
+      gap: 24px;
+      padding: 24px;
+    }
     #${CONTAINER_ID} img {
-      width: 300px;
-      max-width: 90%;
+      width: 200px;
       height: auto;
+      display: block;
     }
   `;
   document.head.appendChild(style);
