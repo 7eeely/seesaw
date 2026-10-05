@@ -7,8 +7,8 @@
   const IMAGES = [                         // browsers can't list a folder, so list the filenames here
     "seesaw.png"
   ];
-  const LOOP = false;                      // true = start over from the first image after the last
-  const TRIGGER_DISTANCE = 300;            // px from the bottom of the page that triggers the next image
+  const LOOP = true;                      // true = start over from the first image after the last
+  const TRIGGER_DISTANCE = 200;            // px from the bottom of the page that triggers the next image
   const CONTAINER_ID = "image-container";  // optional: an element with this id in your HTML
   // ----------------------------
 
