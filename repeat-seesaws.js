@@ -40,7 +40,7 @@
 
   function addImage() {
     const img = new Image();
-    img.alt = "";
+    img.alt = "seesaw";
     img.src = IMAGE_PATH;
 
     img.onload = () => {
@@ -93,13 +93,11 @@
   // Basic styles (fade-in effect) injected so no CSS file is needed
   const style = document.createElement("style");
   style.textContent = `
-    #${CONTAINER_ID} { display: flex; flex-direction: column; align-items: center; gap: 24px; padding: 24px 0; }
+    #${CONTAINER_ID} { display: flex; flex-direction: column; align-items: left; gap: 24px; padding: 24px 0; }
     #${CONTAINER_ID} img {
       max-width: 90%;
-      height: auto;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
+      height: 250;
+      opacity: 1;
     }
     #${CONTAINER_ID} img.visible { opacity: 1; transform: none; }
   `;
