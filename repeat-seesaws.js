@@ -19,12 +19,12 @@
   style.textContent = `
     #${CONTAINER_ID} {
       display: grid;
-      grid-template-columns: repeat(auto-fill, 200px); /* column width = image width */
+      grid-template-columns: repeat(7, 1fr); /* 7 images per row */
       gap: 24px;
       padding: 24px;
     }
     #${CONTAINER_ID} img {
-      width: 200px;
+      width: 100%;   /* scales to fit its column */
       height: auto;
       display: block;
     }
